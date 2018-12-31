@@ -11,7 +11,7 @@ export const startAddExpense = (expenseData = {}) => {
   //returning a function for asynchronous redux actions
   //this is possible only because we set up thunk, by default this wouldn't work
   //this function gets called internally by redux and gets called with dispatch
-  return dispatch => {
+  return (dispatch, getState) => {
     //alternative destructuring and setting defaults
     const {
       description = "",
@@ -19,7 +19,7 @@ export const startAddExpense = (expenseData = {}) => {
       amount = 0,
       createdAt = 0
     } = expenseData;
-
+    const uid = getState().auth.uid;
     const expense = {
       description,
       note,
@@ -30,7 +30,7 @@ export const startAddExpense = (expenseData = {}) => {
     //we set up this to return a promise to be able to test it
     //then gets called with a reference to the pushed element
     return database
-      .ref("expenses")
+      .ref(`users/${uid}/expenses`)
       .push(expense)
       .then(ref => {
         //make changes in the store
@@ -52,9 +52,11 @@ export const removeExpense = ({ id } = {}) => ({
 });
 
 export const startRemoveExpense = ({ id } = {}) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
     return database
-      .ref(`expenses/${id}`)
+      .ref(`users/${uid}/expenses/${id}`)
       .remove()
       .then(() => {
         dispatch(removeExpense({ id }));
@@ -70,9 +72,11 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
     return database
-      .ref(`expenses/${id}`)
+      .ref(`users/${uid}/expenses/${id}`)
       .update(updates)
       .then(() => {
         dispatch(editExpense(id, updates));
@@ -87,9 +91,10 @@ export const setExpenses = expenses => ({
 });
 
 export const startSetExpenses = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return database
-      .ref("expenses")
+      .ref(`users/${uid}/expenses`)
       .once("value")
       .then(snapshot => {
         const expenses = [];
