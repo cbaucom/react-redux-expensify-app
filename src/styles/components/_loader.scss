@@ -1,5 +1,7 @@
 .loader {
   align-items: center;
+  background: rgba($color: $dark-blue, $alpha: 1);
+  background-size: cover;
   display: flex;
   height: 100vh;
   justify-content: center;
