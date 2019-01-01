@@ -6,10 +6,53 @@
   font-size: $font-size-large;
   font-weight: 300;
   line-height: 1;
+  margin-bottom: $s-size;
   padding: $s-size;
   text-decoration: none;
   &:hover {
     background: $dark-blue;
+  }
+  &--soc-icon {
+    margin-right: 1rem;
+    text-align: center;
+    width: 50px;
+  }
+  &--google-login &--facebook-login &--github-login {
+    height: 50px;
+    width: 100%;
+  }
+  &--google-login {
+    background: rgb(223, 74, 50);
+    border: 1px solid darken(rgb(223, 74, 50), 15%);
+    &:hover {
+      background: darken(rgb(223, 74, 50), 5%);
+      border-color: darken(rgb(223, 74, 50), 20%);
+    }
+  }
+  &--facebook-login {
+    background: rgb(57, 87, 154);
+    border: 1px solid darken(rgb(57, 87, 154), 15%);
+    &:hover {
+      background: darken(rgb(57, 87, 154), 5%);
+      border-color: darken(rgb(57, 87, 154), 20%);
+    }
+  }
+  &--github-login {
+    background: rgb(68, 68, 68);
+    border: 1px solid darken(rgb(68, 68, 68), 15%);
+    &:hover {
+      background: darken(rgb(68, 68, 68), 5%);
+      border-color: darken(rgb(68, 68, 68), 20%);
+    }
+  }
+  &--twitter-login {
+    background: rgb(80, 171, 241);
+    border: 1px solid darken(rgb(80, 171, 241), 15%);
+    margin-bottom: 0;
+    &:hover {
+      background: darken(rgb(80, 171, 241), 5%);
+      border-color: darken(rgb(80, 171, 241), 20%);
+    }
   }
 }
 
@@ -22,4 +65,8 @@
   &:hover {
     background: $hover-red;
   }
+}
+
+.button--text {
+  vertical-align: super;
 }
