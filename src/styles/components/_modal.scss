@@ -18,7 +18,7 @@
   color: $off-white;
   max-width: 90rem;
   outline: none;
-  padding: $l-size;
+  padding: $xl-size;
   text-align: center;
   &__title {
     margin: 0 0 $l-size 0;
@@ -26,6 +26,7 @@
   &__body {
     font-size: 2rem;
     font-weight: 300;
+    padding: $xl-size;
     position: relative;
     .button {
       margin: 0 5px;
@@ -55,8 +56,8 @@
       width: 100%;
       top: 50%;
       left: 0;
-      height: 4px;
-      margin-top: -2px;
+      height: 3px;
+      margin-top: -10px;
       background: #fff;
     }
   }
